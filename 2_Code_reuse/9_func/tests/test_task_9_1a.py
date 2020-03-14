@@ -1,19 +1,19 @@
 import pytest
 import sys
-sys.path.append('.')
+sys.path.append('..')
 import task_9_1a
 
-# from common_functions import check_function_exists, check_function_params
+from common_functions import check_function_exists, check_function_params
 
 
-# def test_function_created():
-#     check_function_exists(task_9_1a, 'generate_access_config')
-#
-#
-# def test_function_params():
-#     check_function_params(function=task_9_1a.generate_access_config,
-#                           param_count=3,
-#                           param_names=['intf_vlan_mapping', 'access_template', 'psecurity'])
+def test_function_created():
+    check_function_exists(task_9_1a, 'generate_access_config')
+
+
+def test_function_params():
+    check_function_params(function=task_9_1a.generate_access_config,
+                          param_count=3,
+                          param_names=['intf_vlan_mapping', 'access_template', 'psecurity'])
 
 
 def test_function_return_value():

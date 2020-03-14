@@ -35,7 +35,7 @@ PORT_SECURITY_TEMPLATE = [
     'switchport port-security'
 ]
 
-def generate_access_config(intf_vlan_mapping, access_template,  psecurity_template=None):
+def generate_access_config(intf_vlan_mapping, access_template, psecurity=None):
     '''
     intf_vlan_mapping - словарь с соответствием интерфейс-VLAN такого вида:
         {'FastEthernet0/12':10,
@@ -51,8 +51,8 @@ def generate_access_config(intf_vlan_mapping, access_template,  psecurity_templa
         result_intf_access_conf.append(f"interface {intf}")
         result_intf_access_conf.extend(access_template)
         result_intf_access_conf[result_intf_access_conf.index('switchport access vlan')] += f" {vlan}"
-        if psecurity_template:
-            result_intf_access_conf.extend(psecurity_template)
+        if psecurity:
+            result_intf_access_conf.extend(psecurity)
 
     return result_intf_access_conf
 
