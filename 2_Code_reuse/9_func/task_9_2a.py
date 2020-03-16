@@ -1,4 +1,6 @@
 from pprint import pprint
+from collections import defaultdict
+
 
 """
 Задание 9.2a
@@ -31,10 +33,11 @@ def generate_trunk_config(intf_vlan_mapping, trunk_template):
     :return:
     """
 
-    returned_trunk_intfs = {}
+    # returned_trunk_intfs = {}
+    returned_trunk_intfs = defaultdict(list)
 
     for intf, vlans in intf_vlan_mapping.items():
-        returned_trunk_intfs.setdefault(intf, [])
+        # returned_trunk_intfs.setdefault(intf, [])
         returned_trunk_intfs[intf].extend(trunk_template)
         returned_trunk_intfs[intf][
             returned_trunk_intfs[intf].index("switchport trunk allowed vlan")] += f" {','.join(map(str, vlans))}"

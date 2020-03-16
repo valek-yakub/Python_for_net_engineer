@@ -1,6 +1,7 @@
 import pytest
+from collections import defaultdict
 import sys
-sys.path.append('..')
+sys.path.append('.')
 import task_9_2a
 
 
@@ -38,5 +39,5 @@ def test_function_return_value():
 
     return_value = task_9_2a.generate_trunk_config(trunk_vlans_mapping, template_trunk_mode)
     assert return_value != None, "Функция ничего не возвращает"
-    assert type(return_value) == dict, "Функция должна возвращать словарь"
+    assert type(return_value) == defaultdict, "Функция должна возвращать словарь"
     assert return_value == correct_return_value, "Функция возвращает неправильное значение"

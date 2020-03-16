@@ -1,7 +1,8 @@
 import pytest
-import task_9_3
 import sys
-sys.path.append('..')
+sys.path.append('.')
+import task_9_3
+
 
 from common_functions import check_function_exists, check_function_params
 
