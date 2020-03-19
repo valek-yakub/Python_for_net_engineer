@@ -1,5 +1,5 @@
 from pprint import pprint
-
+from collections import defaultdict
 
 """
 Задание 9.4
@@ -15,6 +15,7 @@ from pprint import pprint
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
 
+
 ignore = ['duplex', 'alias', 'Current configuration', '!']
 
 
@@ -29,3 +30,33 @@ def ignore_command(command, ignore):
     '''
     return any(word in command for word in ignore)
 
+
+def convert_config_to_dict(config_filename: str) -> dict:
+    """
+    Func receives configuration file,
+    then that file's converted to the dict, which is returned.
+    """
+
+    sw_config_dict = {}
+    current_key = None
+
+    with open(config_filename) as sw_config:
+        allowed_sw_config_commands = [allowed_command for allowed_command in sw_config.readlines()
+                                      if not ignore_command(allowed_command, ignore)]
+
+    for command in allowed_sw_config_commands:
+        if not command.startswith(' '):
+            current_key = command.strip()
+            sw_config_dict.setdefault(current_key, [])
+        else:
+            sw_config_dict[current_key].append(command.strip())
+
+    return sw_config_dict
+
+
+def main():
+    pprint(convert_config_to_dict("config_sw1.txt"))
+
+
+if __name__ == '__main__':
+    main()
